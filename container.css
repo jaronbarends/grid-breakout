@@ -1,0 +1,83 @@
+:root {
+  --container-max-width-sm: 600px;
+  --container-max-width-md: 768px;
+  --container-max-width-lg: 1024px;
+  --container-max-width-xl: 1500px;
+  --container-max-width: 100%;
+  --gap-size: 1rem;
+  --col-count: 12;
+  --gap-count: calc(var(--col-count) - 1);
+  --vw: 1vw;
+  --vw: 1cqw;/* when combined with body { container-type: inline-size } cqw takes scrollbar into account https://www.smashingmagazine.com/2023/12/new-css-viewport-units-not-solve-classic-scrollbar-problem/ */
+}
+
+.componentSm,
+.componentMd,
+.componentSm,
+.componentLg,
+.componentXl {
+  --container-padding-inline: min(5vw, 2.5vw + 24px);
+
+  display: flex;
+  justify-content: center;
+  padding-inline: var(--container-padding-inline);
+
+  & > .layout {
+    --layout-width: min(100%, var(--container-max-width));
+    padding-block: 1em;
+    width: var(--layout-width);
+    background: #f8f8f8;
+  }
+}
+
+.componentSm {
+  --container-max-width: var(--container-max-width-sm);
+}
+
+.componentMd {
+  --container-max-width: var(--container-max-width-md);
+}
+
+.componentLg {
+  --container-max-width: var(--container-max-width-lg);
+}
+
+.componentXl {
+  --container-max-width: var(--container-max-width-xl);
+}
+
+.breakout {
+  --start-line: 1;
+  --col-width: calc(
+      (var(--layout-width) - (var(--gap-count) * var(--gap-size)))
+      / var(--col-count)
+    );
+  --breakout-margin-left: calc(
+    (var(--start-line) - 1) * (var(--col-width) + var(--gap-size))
+  );
+  --width-outside-layout: calc((100vw - var(--layout-width)) / 2);
+  --breakout-width: calc(var(--layout-width) - var(--breakout-margin-left) + var(--width-outside-layout));
+
+  margin-left: var(--breakout-margin-left);
+  height: 20px;
+  background: rgba(0 0 255 / 20%);
+  width: var(--breakout-width);
+
+  &.starts-at-1 { --start-line: 1; }
+  &.starts-at-2 { --start-line: 2; }
+  &.starts-at-3 { --start-line: 3; }
+  &.starts-at-4 { --start-line: 4; }
+  &.starts-at-5 { --start-line: 5; }
+  &.starts-at-6 { --start-line: 6; }
+  &.starts-at-7 { --start-line: 7; }
+  &.starts-at-8 { --start-line: 8; }
+  &.starts-at-9 { --start-line: 9; }
+  &.starts-at-10 { --start-line: 10; }
+  &.starts-at-11 { --start-line: 11; }
+  &.starts-at-12 { --start-line: 12; }
+  &.starts-at-13 {
+    /* --start-line: 13; */
+    /* when starting at grid-line 13, we don't want the gap */
+    --breakout-margin-left: var(--layout-width);
+  }
+}

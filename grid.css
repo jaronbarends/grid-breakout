@@ -1,0 +1,13 @@
+body {
+  container-type: inline-size;/*c http://localhost:5500/qw takes scrollbar into account https://www.smashingmagazine.com/2023/12/new-css-viewport-units-not-solve-classic-scrollbar-problem/ */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap-size);
+
+  & > * {
+    background: #eee;
+  }
+}
